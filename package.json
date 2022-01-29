@@ -15,5 +15,8 @@
 	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown"
+	},
+	"devDependencies": {
+		"husky": "^7.0.4"
 	}
 }
