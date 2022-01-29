@@ -16,13 +16,13 @@
 
 // const database = getDatabase(app);
 
-var admin = require('firebase-admin');
+var admin = require("firebase-admin");
 
-var serviceAccount = require('/Users/prayuj/Downloads/credentials.json');
+var serviceAccount = require("/Users/prayuj/Downloads/credentials.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://swamphacksviii-default-rtdb.firebaseio.com'
+  databaseURL: "https://swamphacksviii-default-rtdb.firebaseio.com",
 });
 
 exports.database = admin.database();
