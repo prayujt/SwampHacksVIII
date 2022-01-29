@@ -25,8 +25,4 @@ io.on("connection", (socket) => {
   clientFindLobbyFunctions(socket, io);
 });
 
-let port = 8000;
-
-httpServer.listen(port => {
-  console.log(`server is running on ${port}`)
-});
+httpServer.listen(8000);

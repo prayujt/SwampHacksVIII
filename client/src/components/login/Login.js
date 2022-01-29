@@ -9,7 +9,7 @@ import {
 
 } from 'react-router-dom'
 import Lobby from '../lobby/Lobby';
-import CreateLobby from './FIndLobby';
+import CreateLobby from './FindLobby';
 import { changeName, changeUUID } from '../../features/player/playerSlice';
 import { v4 as uuidv4 } from 'uuid';
 

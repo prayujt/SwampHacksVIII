@@ -31,7 +31,7 @@ export default function FindLobby() {
     const joinGame = async () => {
         socket.emit('joinLobby', parseInt(joinGameID.value), userID, async (response) => {
             await response;
-            if(response.status) {
+            if (response.status === false) {
                 alert('Invalid Game ID!')
             } else {
                 dispatch(createSession(joinGameID.value));
@@ -40,7 +40,7 @@ export default function FindLobby() {
                 navigate("/lobby");
             }
         });
-        navigate(`/lobby/:${gameID}`);     //for debugging
+        // navigate(`/lobby/:${gameID}`);     //for debugging
     }
 
     const createGame = () => {
