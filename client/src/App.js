@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom'
 import Lobby from "./components/lobby/Lobby";
 import Login from './components/login/Login'
-import FindLobby from "./components/login/FIndLobby";
+import FindLobby from "./components/login/FindLobby";
 
 export default function App() {
   return (
