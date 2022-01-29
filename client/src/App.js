@@ -13,6 +13,9 @@ import FindLobby from "./components/login/FIndLobby";
 
 export default function App() {
   console.log(socket);
+  socket.emit('createLobby', 665422, 'prayuj', (response) => {
+    console.log(response);
+  });
 
   console.log("Hello")
 

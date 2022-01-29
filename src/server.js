@@ -1,4 +1,15 @@
 const { createServer } = require("http");
+const { clientFindLobbyFunctions } = require('./functions/client/findLobbyFunctions');
+
+const {
+    get,
+    getProperty,
+    set,
+    setProperty,
+    update,
+    watch,
+    pathExists
+} = require('./global');
 
 const httpServer = createServer();
 
@@ -10,8 +21,8 @@ const io = require("socket.io")(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log(socket.id);
-  console.log("bitches");
+  console.log("connected " + socket.id);
+  clientFindLobbyFunctions(socket, io);
 });
 
 let port = 8000;
