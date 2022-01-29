@@ -47,16 +47,17 @@ export default function FindLobby() {
         let newGameID = Math.floor(100000 + Math.random() * 900000)
         dispatch(createSession(newGameID));
 
-        socket.emit('createLobby', gameID, username, userID, async (res) => {
+        socket.emit('createLobby', newGameID, username, userID, async (res) => {
             await res;
-            if(res.status) {
+            if(res.status === true) {
                 dispatch(changeIsHost(true));
                 dispatch(changeJoined(true));
-                navigate(`/lobby/${gameID}`);
+                navigate(`/lobby/${newGameID}`);
             } else {
                 alert("failed to create lobby")
             }
         });
+        navigate(`/lobby/${newGameID}`);     //for debugging
     }
 
     const handleChange = (e) => {
@@ -72,7 +73,6 @@ export default function FindLobby() {
     const handelCreateGame = (e) => {
         e.preventDefault();
         createGame();
-        navigate(`/lobby/${gameID}`);     //for debugging
     }
 
     return (
