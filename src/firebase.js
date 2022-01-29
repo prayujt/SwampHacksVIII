@@ -18,7 +18,7 @@
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("/Users/prayuj/Downloads/credentials.json");
+var serviceAccount = require("/home/prayuj/Downloads/credentials.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

@@ -17,8 +17,9 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
 		if (gameID == null) gameExists = false;
 		else {
 			gameExists = await pathExists(
-                gameID.toString(),
+                gameID.toString()
 			);
+            console.log(gameExists);
 		}
 		let status = true;
 		let player = {
@@ -30,6 +31,9 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
             socket.join(gameID);
             socket.gameID = gameID;
             socket.username = username;
+            await update(gameID + '/players',
+                {[socket.id]: username}
+            );
 
             clientLobbyFunctions(socket, gameID);
 		} else {
@@ -58,6 +62,10 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
 
         serverLobbyFunctions(io, gameID);
         clientLobbyFunctions(socket, gameID);
+
+        await update(gameID + '/players',
+            {[socket.id]: username}
+        );
 
 		response({
 			status: true,

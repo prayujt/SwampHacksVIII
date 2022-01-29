@@ -3,7 +3,7 @@
 		"client": "cd client && npm run start",
 		"server": "nodemon src/server.js",
 		"start": "concurrently \"npm run client\" \"npm run server\"",
-		"prepare": "husky install"
+        "prepare": "husky install"
 	},
 	"dependencies": {
 		"concurrently": "^7.0.0",
@@ -15,5 +15,8 @@
 	},
 	"lint-staged": {
 		"**/*": "prettier --write --ignore-unknown"
+	},
+	"devDependencies": {
+		"husky": "^7.0.4"
 	}
 }
