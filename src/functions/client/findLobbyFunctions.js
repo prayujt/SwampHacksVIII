@@ -25,7 +25,6 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
 			gameID: gameID,
 			username: username,
 		};
-
 		if (gameExists && gameID != '') {
             socket.join(gameID);
             socket.gameID = gameID;

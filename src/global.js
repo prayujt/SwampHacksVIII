@@ -10,18 +10,22 @@ exports.dropCollection = async (collection, client) => {
 
 exports.get = async (path) => {
     let ref = await database.ref(path);
-    ref.once('value', async (data) => {
-        await data;
-        return data;
+    let data;
+    await ref.once('value', async (data_) => {
+        await data_;
+        data = data_;
     });
+    return data;
 };
 
 exports.getProperty = async (path, property) => {
     let ref = await database.ref(path).child(property);
-    ref.once('value', async (data) => {
-        await data;
-        return data;
+    let data;
+    await ref.once('value', async (data_) => {
+        await data_;
+        data = data_;
     });
+    return data;
 };
 
 exports.set = async (path, data) => {
@@ -49,9 +53,10 @@ exports.watch = async (path, callback) => {
 
 exports.pathExists = async (path) => {
     let ref = await database.ref(path);
-    ref.once('value', async (snapshot) => {
-        if (snapshot.exists()) return true;
-        else return false;
+    let status = false;
+    await ref.once('value', async (snapshot) => {
+        if (snapshot.exists()) status = true;
+        else status = false;
     });
-
+    return status;
 }
