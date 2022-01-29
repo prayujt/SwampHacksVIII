@@ -14,4 +14,8 @@ io.on("connection", (socket) => {
   console.log("bitches");
 });
 
-httpServer.listen(8000);
+let port = 8000;
+
+httpServer.listen(port => {
+  console.log(`server is running on ${port}`)
+});

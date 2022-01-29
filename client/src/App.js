@@ -1,11 +1,29 @@
 import React from "react";
-import "./App.css";
+//import "./App.css";
 import socket from "./socket";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
 
-function App() {
+} from 'react-router-dom'
+import Lobby from "./components/lobby/Lobby";
+import Login from './components/login/Login'
+import FindLobby from "./components/login/FIndLobby";
+
+export default function App() {
   console.log(socket);
 
-  return <div></div>;
+  console.log("Hello")
+
+  return (
+    <Router>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/findlobby' element={<FindLobby />} />
+        <Route path='/lobby' element={<Lobby />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App;

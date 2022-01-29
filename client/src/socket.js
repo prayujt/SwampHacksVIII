@@ -1,3 +1,5 @@
 import { io } from "socket.io-client";
 
-export default socket = io("localhost:8000");
+let socket = io("localhost:8000");
+
+export default socket;
