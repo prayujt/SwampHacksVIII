@@ -21,7 +21,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/findlobby' element={<FindLobby />} />
-        <Route path='/lobby' element={<Lobby />} />
+        <Route path='/lobby/:id' element={<Lobby />} />
       </Routes>
     </Router>
   );
