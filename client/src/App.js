@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import { io } from 'socket.io-client'
+import socket from "./socket"
 
 function App() {
 
-  const socket = io("http://localhost:8000");
+  console.log(socket);
 
 
   return (
