@@ -1,5 +1,4 @@
 import { io } from "socket.io-client";
 
-let socket = io("localhost:8000");
-
+const socket = io("localhost:8000");
 export default socket;

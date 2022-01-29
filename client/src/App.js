@@ -12,10 +12,6 @@ import Login from './components/login/Login'
 import FindLobby from "./components/login/FIndLobby";
 
 export default function App() {
-  console.log(socket);
-
-  console.log("Hello")
-
   return (
     <Router>
       <Routes>
