@@ -41,9 +41,8 @@ export default function FindLobby() {
                 dispatch(createSession(joinGameID.value));
                 dispatch(changeIsHost(true));
                 dispatch(changeJoined(true));
-                dispatch(addPlayer(username));
+                dispatch(addPlayer(Object.values(response.player)));
                 navigate(`/lobby/${inputGameID}`);
-                console.log(response);
             }
         });
         // navigate(`/lobby/:${gameID}`);     //for debugging
