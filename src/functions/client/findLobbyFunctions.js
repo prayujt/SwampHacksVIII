@@ -29,6 +29,10 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
             socket.join(gameID);
             socket.gameID = gameID;
             socket.username = username;
+			await update(gameID + '/players', 
+			{
+				[socket.id]: username
+			});
 
             clientLobbyFunctions(socket, gameID);
 		} else {
@@ -45,13 +49,16 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
 		socket.join(gameID);
 		socket.gameID = gameID;
 		socket.username = username;
-        await update(
+        await set(
             gameID.toString(),
             {
                 gameID: gameID,
                 gameStarted: false,
                 host: username,
                 settings: {},
+				players: {
+					[socket.id]: username
+				}
             }
         );
 

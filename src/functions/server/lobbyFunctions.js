@@ -14,6 +14,7 @@ exports.serverLobbyFunctions = async (io, gameID) => {
         async (value) => {
             let temp = await get(gameID.toString() + '/players');
             let players = temp.val();
+            console.log(players)
             io.to(gameID).emit('lobbyPlayerChange', players);
         }
     );

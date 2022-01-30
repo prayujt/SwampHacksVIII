@@ -1,4 +1,5 @@
+import React from 'react'
 import { io } from "socket.io-client";
 
-const socket = io("localhost:8000");
-export default socket;
+export const socket = io("localhost:8000") ;
+export const SocketContext = React.createContext();

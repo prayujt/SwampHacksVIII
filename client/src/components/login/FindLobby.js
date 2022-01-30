@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     BrowserRouter as Router,
     Routes,
@@ -9,10 +9,10 @@ import {
 
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { createSession, setHost } from '../../features/lobby/lobbySlice';
+import { addPlayer, createSession, setHost } from '../../features/lobby/lobbySlice';
 import { changeIsHost, changeJoined } from '../../features/player/playerSlice';
 import Lobby from '../lobby/Lobby';
-import socket from '../../socket';
+import { SocketContext } from '../../socket';
 
 export default function FindLobby() {
 
@@ -26,7 +26,12 @@ export default function FindLobby() {
     const gameID = useSelector(state => state.lobby.gameID)
 
     const dispatch = useDispatch();
+    const socket = useContext(SocketContext);
     
+    const player = {
+        userID: userID,
+        username: username
+    }
 
     const joinGame = async () => {
         let inputGameID = parseInt(joinGameID.value)
@@ -39,6 +44,7 @@ export default function FindLobby() {
                 dispatch(createSession(joinGameID.value));
                 dispatch(changeIsHost(true));
                 dispatch(changeJoined(true));
+                dispatch(addPlayer(player))
                 navigate(`/lobby/${inputGameID}`);
             }
         });
