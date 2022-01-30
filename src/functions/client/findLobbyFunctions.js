@@ -39,8 +39,11 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
 			status = false;
 		}
 
+        let players = await get(gameID.toString() + "/players");
+
 		response({
 			status: status,
+            player: players
 		});
 	});
 
