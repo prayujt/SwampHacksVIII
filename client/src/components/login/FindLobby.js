@@ -40,7 +40,7 @@ export default function FindLobby() {
             } else {
                 console.log(response.player)
                 dispatch(createSession(joinGameID.value));
-                dispatch(changeIsHost(true));
+                dispatch(changeIsHost(false));
                 dispatch(changeJoined(true));
                 dispatch(addPlayer(Object.values(response.player)));
                 navigate(`/lobby/${inputGameID}`);
