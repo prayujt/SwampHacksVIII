@@ -51,6 +51,16 @@ exports.watch = async (path, callback) => {
     });
 };
 
+exports.deleteReference = async (path) => {
+    let ref = await database.ref(path);
+    ref.remove();
+}
+
+exports.deleteProperty = async (path, property) => {
+    let ref = await database.ref(path).child(property);
+    ref.remove();
+}
+
 exports.pathExists = async (path) => {
     let ref = await database.ref(path);
     let status = false;

@@ -18,7 +18,7 @@
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("/Users/kanie/Downloads/swamphacksviii-firebase-adminsdk-nfh9j-c514f9f45d.json");
+var serviceAccount = require("/Users/prayuj/Downloads/credentials.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

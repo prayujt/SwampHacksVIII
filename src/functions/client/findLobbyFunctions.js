@@ -34,7 +34,7 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
 				[socket.id]: username
 			});
 
-            clientLobbyFunctions(socket, gameID);
+            clientLobbyFunctions(socket, gameID, username);
 		} else {
 			status = false;
 		}
@@ -66,7 +66,7 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
         );
 
         serverLobbyFunctions(io, gameID);
-        clientLobbyFunctions(socket, gameID);
+        clientLobbyFunctions(socket, gameID, username);
 
 		response({
 			status: true,

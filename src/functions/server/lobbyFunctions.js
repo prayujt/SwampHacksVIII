@@ -14,7 +14,6 @@ exports.serverLobbyFunctions = async (io, gameID) => {
         async (value) => {
             let temp = await get(gameID.toString() + '/players');
             let players = temp.val();
-            console.log(players)
             io.to(gameID).emit('lobbyPlayerChange', players);
         }
     );
@@ -22,10 +21,15 @@ exports.serverLobbyFunctions = async (io, gameID) => {
     let gameStartedWatch = watch(
         gameID.toString(),
         async (value) => {
-            if (value.val().gameStarted == true) {
-                await playersWatch.close();
-                await gameStartedWatch.close();
-                serverGameFunctions(io, gameID);
+            try {
+                if (value.val().gameStarted == true) {
+                    await playersWatch.close();
+                    await gameStartedWatch.close();
+                    serverGameFunctions(io, gameID);
+                }
+            }
+            catch (TypeError) {
+                console.log('caught error');
             }
         }
     );
