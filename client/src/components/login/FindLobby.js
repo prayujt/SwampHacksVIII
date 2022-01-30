@@ -28,10 +28,7 @@ export default function FindLobby() {
     const dispatch = useDispatch();
     const socket = useContext(SocketContext);
     
-    const player = {
-        userID: userID,
-        username: username
-    }
+    
 
     const joinGame = async () => {
         let inputGameID = parseInt(joinGameID.value)
@@ -44,7 +41,7 @@ export default function FindLobby() {
                 dispatch(createSession(joinGameID.value));
                 dispatch(changeIsHost(true));
                 dispatch(changeJoined(true));
-                dispatch(addPlayer(player))
+                dispatch(addPlayer(username));
                 navigate(`/lobby/${inputGameID}`);
             }
         });

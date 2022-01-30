@@ -8,17 +8,14 @@ import { SocketContext } from '../../socket'
 export default function Lobby() {
 
     const lobbyID = useSelector(state => state.lobby.gameID)
-    const players = useSelector(state => state.lobby.players)
 
     const dispatch = useDispatch()
     const socket = useContext(SocketContext);
 
-    console.log(players)
 
-
-    
-    socket.on('lobbyPlayerChange', (players_) => {
-        players = players_
+    socket.on('lobbyPlayerChange', (players) => {
+        console.log("player added")
+        console.log(players)
     })
 
  
