@@ -24,7 +24,7 @@ export default function Login() {
 
     let navigate = useNavigate();
 
-    console.log(name)
+    //console.log(name)
 
     //handel form
     const handleChange = (e) => {

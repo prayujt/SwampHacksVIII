@@ -18,6 +18,9 @@ export const lobbySlice = createSlice({
         addPlayer: (state, action) => {
             state.players.push(action.payload)
         },
+        updatePlayers: (state, action) => {
+            state.players = [action.payload]
+        },
         removePlayer: (state, action) => {
             const uuid = action.payload.uuid
             state.players.filter(player => player.uuid !== uuid);
@@ -33,6 +36,6 @@ export const lobbySlice = createSlice({
     },
 });
 
-export const { createSession, addPlayer, removePlayer, setHost, changeSettings } = lobbySlice.actions;
+export const { createSession, addPlayer, removePlayer, setHost, changeSettings, updatePlayers } = lobbySlice.actions;
 
 export default lobbySlice.reducer;

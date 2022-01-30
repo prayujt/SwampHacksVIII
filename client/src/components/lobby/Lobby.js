@@ -1,7 +1,7 @@
 import { React, useCallback, useContext, useEffect } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
-import { addPlayer, removePlayer } from '../../features/lobby/lobbySlice'
+import { addPlayer, removePlayer, updatePlayers } from '../../features/lobby/lobbySlice'
 import { SocketContext } from '../../socket'
 
 
@@ -10,30 +10,34 @@ export default function Lobby() {
     const lobbyID = useSelector(state => state.lobby.gameID)
     const players = useSelector(state => state.lobby.players)
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const socket = useContext(SocketContext);
 
-    console.log(players)
+   
 
 
     socket.on('onLobbyChange', (players) => {
-        dispatch(Object.values(players))
+        dispatch(updatePlayers(Object.values(players)))
     })
 
+
+
+    const startGame = () => {
+        //TODO: Switch out for game selector
+        navigate(`game/${lobbyID}`)
+    }
 
 
     return (
         <div>
             <h1>Lobby: {lobbyID}</h1>
-            <button>Start Game</button>
+            <button onClick={startGame}>Start Game</button>
             <button>Change settings</button>
             <div>
-                <ul>
-                    {players[0].map(player => {
-                        console.log(player)
-                        return <li>{player}</li>
-                    })}
-                </ul>
+                {players[0].map((player) => {
+                    return <p>{player}</p>
+                })}
             </div>
 
         </div>
