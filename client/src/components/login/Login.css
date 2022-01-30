@@ -1,0 +1,26 @@
+.login-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-header {
+    margin: 5rem;
+}
+
+.login-button {
+    height: 3.4rem;
+    width: 8rem;
+
+}
+
+.login-form {
+    margin: 5rem;
+    width: 25rem;
+}
+
+#username-input {
+    width: 15rem;
+}
