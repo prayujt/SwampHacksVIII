@@ -17,7 +17,7 @@ export default function Lobby() {
    
 
 
-    socket.on('onLobbyChange', (players) => {
+    socket.on('lobbyPlayerChange', (players) => {
         dispatch(updatePlayers(Object.values(players)))
     })
 

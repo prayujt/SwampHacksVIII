@@ -43,7 +43,7 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
 
 		response({
 			status: status,
-            player: players
+            player: players.val()
 		});
 	});
 

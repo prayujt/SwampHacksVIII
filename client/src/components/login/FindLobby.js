@@ -38,6 +38,7 @@ export default function FindLobby() {
             if (response.status === false) {
                 alert('Invalid Game ID!')
             } else {
+                console.log(response.player)
                 dispatch(createSession(joinGameID.value));
                 dispatch(changeIsHost(true));
                 dispatch(changeJoined(true));
