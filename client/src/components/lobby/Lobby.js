@@ -13,11 +13,7 @@ export default function Lobby() {
     const socket = useContext(SocketContext);
 
 
-    socket.on('lobbyPlayerChange', (players) => {
-        console.log("player added")
-        console.log(players)
-    })
-
+    
  
     
 

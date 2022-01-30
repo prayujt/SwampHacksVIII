@@ -70,6 +70,9 @@ exports.clientFindLobbyFunctions = async (socket, io) => {
 
 		response({
 			status: true,
+			players: {
+				[socket.id]: username
+			}
 		});
 	});
 
