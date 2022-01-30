@@ -52,7 +52,7 @@ export default function Lobby() {
             </div>
 
             <div className='lobby-container-start'>
-                <Button id='lobby-button-start'
+                <Button disabled={!isHost} id='lobby-button-start'
                     onClick={startGame}
                     variant='contained'
                 >
@@ -69,6 +69,6 @@ const Host = ({ isHost }) => {
     if (isHost) {
         return <Typography variant='h5' component='p'>You are hosting</Typography>
     } else {
-        return <Typography varient='h5' component='p'>Wait for host to start</Typography>
+        return <Typography variant='h5' component='p'>Wait for host to start</Typography>
     }
 }
