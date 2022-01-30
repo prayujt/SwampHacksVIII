@@ -55,7 +55,7 @@ export default function Login() {
         <div className="login-container">
             <header className="login-header">
                 <Typography variant='h1' component='div'>
-                    SHAZOOT
+                    LOBBY
                 </Typography>
             </header>
             <section>
@@ -63,7 +63,7 @@ export default function Login() {
                     <label>
                         <TextField
                             id="username-input"
-                            label="enter username"
+                            label="Enter username"
                             variant="outlined"
                             value={username.value}
                             onChange={handleChange} />

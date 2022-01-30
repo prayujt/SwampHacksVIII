@@ -8,6 +8,11 @@ import {
     useParams
 
 } from 'react-router-dom';
+import './FindLobby.css'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import { ButtonGroup } from '@mui/material';
+import Typography from '@mui/material/Typography'
 import { useSelector, useDispatch } from 'react-redux';
 import { addPlayer, createSession, setHost } from '../../features/lobby/lobbySlice';
 import { changeIsHost, changeJoined } from '../../features/player/playerSlice';
@@ -16,7 +21,7 @@ import { SocketContext } from '../../socket';
 
 export default function FindLobby() {
 
-    const [joinGameID, setGameID] = useState({value: ''})
+    const [joinGameID, setGameID] = useState({ value: '' })
 
     const navigate = useNavigate();
     //const gameUrl = useParams();
@@ -27,7 +32,7 @@ export default function FindLobby() {
 
     const dispatch = useDispatch();
     const socket = useContext(SocketContext);
-    
+
 
 
     const joinGame = async () => {
@@ -55,7 +60,7 @@ export default function FindLobby() {
 
         socket.emit('createLobby', newGameID, username, async (response) => {
             await response;
-            if(response.status === true) {
+            if (response.status === true) {
                 console.log(response.player)
                 dispatch(changeIsHost(true));
                 dispatch(changeJoined(true));
@@ -69,13 +74,13 @@ export default function FindLobby() {
     }
 
     const handleChange = (e) => {
-       setGameID({value: e.target.value})
+        setGameID({ value: e.target.value })
     }
 
     const handelJoinGame = (e) => {
         e.preventDefault();
         joinGame();
-        
+
     }
 
     const handelCreateGame = (e) => {
@@ -85,15 +90,30 @@ export default function FindLobby() {
 
     return (
         <div className="findlobby-container">
-        <h2>{userID}: {username}</h2>
-        <form onSubmit={handelJoinGame}>
-            <label>
-                Enter User GameID: 
-                <input type='text' value={joinGameID.value} onChange={handleChange}></input>
-            </label>
-            <button type="submit">add</button>
-            <button onClick={handelCreateGame}>create game</button>
-        </form>
-    </div>
+            <header className="findlobby-header">
+                <Typography variant='h2' component='div'>
+                    Welcome {username}
+                </Typography>
+            </header>
+            <section>
+                <form id='findlobby-form' onSubmit={handelJoinGame}>
+                    <label>
+                        <TextField
+                            id="findlobby-input"
+                            label="Enter code"
+                            variant="outlined"
+                            value={joinGameID.value}
+                            onChange={handleChange} />
+                    </label>
+                    <Button variant='outlined' id='findlobby-button-join' type='submit'>Join Game</Button>
+                </form>
+            </section>
+            <section className='or-container'>
+                <Typography variant='h4' component='div'>
+                    or
+                </Typography>
+            </section>
+            <Button variant='contained' id='findlobby-button-create' onClick={handelCreateGame} color='error'>Create Game</Button>
+        </div>
     );
 }
