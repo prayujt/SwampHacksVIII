@@ -1,0 +1,23 @@
+.lobby-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lobby-container-start {
+    display: flex;
+    flex-direction: row;
+    width: 31rem;
+}
+
+#lobby-button-start {
+    width: 13rem;
+    margin-right: 3rem;
+}
+
+#lobby-paper-players {
+    width: 31rem;
+    height: 15rem;
+}

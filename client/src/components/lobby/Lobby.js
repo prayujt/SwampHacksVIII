@@ -3,10 +3,14 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { addPlayer, removePlayer, updatePlayers } from '../../features/lobby/lobbySlice'
 import { SocketContext } from '../../socket'
+import Button from '@mui/material/Button'
+import { ButtonGroup, Paper } from '@mui/material';
+import Typography from '@mui/material/Typography'
+import './Lobby.css'
 
 export default function Lobby() {
 
-    const lobbyID = useSelector(state => state.lobby.gameID)
+    const gameID = useSelector(state => state.lobby.gameID)
     const players = useSelector(state => state.lobby.players)
     const isHost = useSelector(state => state.player.isHost)
 
@@ -20,23 +24,41 @@ export default function Lobby() {
 
     const startGame = () => {
         //TODO: Switch out for game selector
-        navigate(`/game/${lobbyID}`)
+        navigate(`/game/${gameID}`)
     }
 
-    
+
 
     return (
-        <div>
-            <h1>Lobby: {lobbyID}</h1>
-            <button onClick={startGame}>Start Game</button>
-            <button>Change settings</button>
-            <div>
-                {players[0].map((player) => {
-                    return <p>{player}</p>
-                })}
+        <div className='lobby-container'>
+            <header>
+                <Typography variant='h2' component='div'>
+                    Game code: {gameID}
+                </Typography>
+            </header>
+
+            <div className='lobby-container-players'>
+                <Paper id="lobby-paper-players" variant='elevation'>
+                    {players[0].map((player) => {
+                        return (
+
+                            <Typography variant='h6' component='p'>
+                                {player}
+                            </Typography>
+
+                        );
+                    })}
+                </Paper>
             </div>
-            <div>
-                <Host isHost={isHost}/>
+
+            <div className='lobby-container-start'>
+                <Button id='lobby-button-start'
+                    onClick={startGame}
+                    variant='contained'
+                >
+                    Start Game
+                </Button>
+                <Host id='host-container' isHost={isHost} />
             </div>
 
         </div>
@@ -44,9 +66,9 @@ export default function Lobby() {
 }
 
 const Host = ({ isHost }) => {
-    if(isHost) {
-        return <h2>You are hosting</h2>
+    if (isHost) {
+        return <Typography variant='h5' component='p'>You are hosting</Typography>
     } else {
-        return <h2>Wait for host to start</h2>
+        return <Typography varient='h5' component='p'>Wait for host to start</Typography>
     }
 }
